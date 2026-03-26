@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My First Website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    color:white;
+    text-align:center;
+    font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:linear-gradient(135deg, #0f0f0f, #161b22, #0a0f14);
+    min-height:100vh;
+}
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.25);
+    z-index:1;
+    pointer-events:none;
+}
+h1{
+    color:#00ffcc;
+    text-shadow:0 0 8px rgba(0,255,204,0.6);
+    font-size:36px;
+}
+
+button{
+    padding:12px 28px;
+    background:linear-gradient(135deg, #00e6b8, #00ff66);
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+    transition:0.3s;
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    margin-top:30px;
+}
+
+button:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 25px lime;
+}
+nav{
+    padding:15px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    flex-wrap:nowrap;
+
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+
+    position:sticky;   /* 👈 added */
+    top:0;             /* 👈 added */
+    z-index:10;        /* 👈 added */
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#00ffcc;
+    text-shadow:0 0 8px rgba(0,255,204,0.6);
+}
+.game{
+    background:#1e1e1e;
+    padding:15px;
+    border-radius:12px;
+    width:200px;
+    transition:0.3s;
+    box-shadow:0 0 10px rgba(255,255,255,0.1);
+}
+
+.game:hover{
+    transform:translateY(-8px) scale(1.05);
+    box-shadow:0 0 20px lime;
+    background:#2a2a2a;
+}
+.games{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-top:20px;
+}
+
+.game{
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(6px);
+    padding:15px;
+    border-radius:14px;
+    width:200px;
+    transition:0.3s;
+    box-shadow:0 8px 24px rgba(0,0,0,0.35);
+}
+
+.game img{
+width:100%;
+border-radius:8px;
+}
+
+.game:hover{
+transform:scale(1.1);
+background:#333;
+}
+.video{
+    margin-top:40px;
+}
+.about{
+    max-width:700px;
+    margin:50px auto;
+    padding:20px;
+    background:#181818;
+    border-radius:14px;
+    box-shadow:0 0 15px rgba(0,255,204,0.15);
+}
+
+.about h2{
+    color:#00ffcc;
+    margin-bottom:15px;
+}
+
+.about p{
+    color:#dddddd;
+    line-height:1.7;
+    font-size:16px;
+}
+.hero{
+    padding:80px 20px 50px;
+    background:transparent;
+}
+
+.hero h1{
+    font-size:48px;
+    color:#ffffff;
+    text-shadow:0 8px 20px rgba(0,0,0,0.45);
+    margin-bottom:10px;
+}
+.hero p{
+    font-size:20px;
+    color:#cfcfcf;
+}
+footer{
+    margin-top:50px;
+    padding:20px;
+    background:rgba(0,0,0,0.6);
+    color:#cccccc;
+    font-size:14px;
+}
+@media (max-width: 768px){
+    .hero h1{
+        font-size:32px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .games{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .game{
+        width:90%;
+        max-width:300px;
+    }
+
+    .video iframe{
+        width:90%;
+        height:220px;
+    }
+
+    .about{
+        width:90%;
+        padding:15px;
+    }
+
+    button{
+        width:80%;
+        max-width:250px;
+    }
+}
+.video{
+    margin-top:40px;
+    width:90%;
+    max-width:800px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.video iframe{
+    width:100%;
+    height:400px;
+    border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6);
+}
+.stats{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin:40px auto;
+    width:90%;
+}
+
+.stat-box{
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:14px;
+    min-width:180px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.35);
+    transition:0.3s;
+}
+
+.stat-box:hover{
+    transform:translateY(-6px);
+    background:rgba(255,255,255,0.12);
+}
+
+.stat-box h3{
+    font-size:30px;
+    color:#00ffcc;
+    margin-bottom:8px;
+}
+
+.stat-box p{
+    color:#dddddd;
+    margin:0;
+}
+.contact{
+    margin:50px auto;
+    padding:30px;
+    width:90%;
+    max-width:700px;
+    background:rgba(0,0,0,0.6);
+    border-radius:15px;
+}
+
+.contact h2{
+    color:#00ffcc;
+    margin-bottom:10px;
+}
+
+.contact p{
+    color:#cccccc;
+    margin-bottom:20px;
+}
+
+.contact-links a{
+    display:inline-block;
+    margin:10px;
+    padding:10px 20px;
+    background:#00ffcc;
+    color:black;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+    font-weight:bold;
+}
+
+.contact-links a{
+    display:inline-block;
+    width:150px;        /* same width for all */
+    text-align:center;
+    margin:10px;
+    padding:12px;
+    background:#00ffcc;
+    color:black;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+    font-weight:bold;
+}
+.animated-bg{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+    pointer-events:none;
+}
+
+.animated-bg span{
+    position:absolute;
+    display:block;
+    width:20px;
+    height:20px;
+    background:rgba(0,255,204,0.12);
+    animation:move 20s linear infinite;
+    bottom:-150px;
+    border-radius:50%;
+}
+
+.animated-bg span:nth-child(1){
+    left:10%;
+    width:40px;
+    height:40px;
+    animation-duration:18s;
+}
+
+.animated-bg span:nth-child(2){
+    left:25%;
+    width:25px;
+    height:25px;
+    animation-duration:22s;
+    animation-delay:2s;
+}
+
+.animated-bg span:nth-child(3){
+    left:50%;
+    width:30px;
+    height:30px;
+    animation-duration:20s;
+    animation-delay:4s;
+}
+
+.animated-bg span:nth-child(4){
+    left:70%;
+    width:50px;
+    height:50px;
+    animation-duration:26s;
+    animation-delay:1s;
+}
+
+.animated-bg span:nth-child(5){
+    left:85%;
+    width:20px;
+    height:20px;
+    animation-duration:16s;
+    animation-delay:3s;
+}
+
+@keyframes move{
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        transform:translateY(-1100px) rotate(720deg);
+        opacity:0;
+    }
+}
+</style>
+
+
+</head>
+
+<body>
+    <div class="animated-bg">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+    <section class="hero" id="home">
+    <h1>Welcome to My Gaming World</h1>
+    <p>Gaming, Content Creation, and Epic Adventures</p>
+</section>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#games">Games</a>
+<a href="#youtube">YouTube</a>
+<a href="#contact">Contact</a>
+</nav>
+
+
+<h2 id="games">My Favorite Games</h2>
+
+<div class="games">
+
+<div class="game">
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1672970/header.jpg">
+<p>Minecraft</p>
+</div>
+
+<div class="game">
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1623730/header.jpg">
+<p>Palworld</p>
+</div>
+
+<div class="game">
+<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg">
+<p>Valorant</p>
+</div>
+
+</div>
+
+<button onclick="alert('Laand Lega!')">
+Click Me
+</button>
+
+<h2 id="youtube">My Latest Video</h2>
+
+<div class="video">
+<iframe 
+src="https://www.youtube.com/embed/sa3F9jTUGUI?si=GguJJMReHr4gGlMJ"
+width="100%" 
+height="315"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+<section class="about">
+    <h2>About Me</h2>
+    <p>
+        Hey! I am a gamer and content creator. I enjoy playing games like Minecraft,
+        Palworld, and Valorant, and I also share gaming content on YouTube.
+    </p>
+</section>
+<section class="stats">
+    <div class="stat-box">
+        <h3>50+</h3>
+        <p>Videos Created</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>4 yrs</h3>
+        <p>Experience</p>
+    </div>
+
+    <div class="stat-box">
+        <h3>100%</h3>
+        <p>Gaming Passion</p>
+    </div>
+</section>
+<section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Follow me and check out my content 👇</p>
+
+    <div class="contact-links">
+        <a href="https://youtube.com/@rexxybabes?si=vsteZtS3sQ0GToA6" target="_blank">YouTube</a>
+        <a href="https://discord.gg/HZBYWgUg" target="_blank">Discord</a>
+
+    </div>
+</section>
+<footer>
+    <p>© 2026 My Gaming Website | Made by Amit Kushwaha</p>
+</footer>
+
+</body>
+</html>
